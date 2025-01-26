@@ -10,17 +10,15 @@
         init.defaultBranch = "main";
       };
     };
-
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-    };
-    
-    # Because I haven't configured nvim yet.
-    vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-    };
   };
+
+  home.packages = with pkgs; [
+    rustup
+    gcc
+    lua-language-server
+    nil
+    ripgrep
+  ];
+
+  imports = [./apps/nvim.nix];
 }

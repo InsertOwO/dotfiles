@@ -4,14 +4,16 @@
   programs.waybar = {
     enable = true;
     settings.mainBar = {
+      spacing = 5;
+
       modules-left = ["image" "sway/window" "privacy" "sway/mode"];
       modules-center = ["sway/workspaces"];
       modules-right = ["memory" "cpu" "network" "battery" "wireplumber" "clock"]; 
 
       image = {
-	on-click = "exec wlogout";
-	path = "/home/${config.name}/.local/icon.png";
-	size = 21;
+        on-click = "exec wlogout";
+        path = "/home/${config.name}/.local/icon.png";
+        size = 21;
       };
       "sway/window" = {
         format = " {title}";
@@ -36,12 +38,12 @@
       };
 
       "sway/mode" = {
-         format = "  ";
+         format = "";
       };
 
       memory = {
         interval = 30;
-        format = "{} ";
+        format = "{}";
       };
       cpu = {
         format = "{} ┃";
@@ -54,21 +56,21 @@
       };
       battery = {
         interval = 60;
-        format = " {capacity} {icon} ";
-        format-icons = ["" "" "" "" ""];
+        format = "{capacity} {icon}";
+        format-icons = [" " " " " " " " " "];
         states = {
           "warning" = 30;
           "critical" = 15; 
         };
       };
       wireplumber = {
-        format = "{volume} {icon} ";
-        format-muted = " ";
+        format = "{volume} {icon}";
+        format-muted = "";
         format-icons = ["" "" ""];
       };
       clock = {
-	format = "{:%H:%M} ";
-	format-alt = "{:%d/%m/%y} ";
+        format = "{:%H:%M}";
+        format-alt = "{:%d/%m/%y}";
       };
     };
 
@@ -98,12 +100,17 @@
         box-shadow: 0px 0px 0px 3px #${config.color.priCol} inset;
       }
 
+      tooltip {
+        background: #${config.color.bgCol};
+        box-shadow: 0px 0px 0px 3px #${config.color.priCol} inset;
+      }
+
       #workspaces button.focused {
         box-shadow: 0px 0px 0px 3px #${config.color.priCol} inset;
       }
 
       #battery.charging {
-        color:  #${config.color.priCol};
+        color:  #${config.color.secCol};
       }
 
       #battery.critical:not(.charging) {

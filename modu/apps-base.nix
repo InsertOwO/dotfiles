@@ -13,9 +13,7 @@
     };
 
     blueman.enable = true;
-
     gvfs.enable = true;
-
     printing.enable = true;
   };
 
@@ -28,6 +26,10 @@
         swayidle
         swaylock
         brightnessctl
+        jq
+        grim
+        slurp
+        swappy
       ];
     };
 
@@ -35,15 +37,23 @@
   };
 
   environment.systemPackages = with pkgs; [
+    (import ./wm/screenshot.nix {inherit pkgs;})
+    kdePackages.dolphin
+    kdePackages.qtwayland
+    kdePackages.qtsvg
+    kdePackages.kio
+    kdePackages.kio-extras
+    libsForQt5.kservice
     pwvucontrol
     mpv
-    nemo
+    swayimg
     unrar
     unzip
   ];
 
   fonts.packages = with pkgs; [
     font-awesome
-    source-code-pro
+    nerd-fonts.sauce-code-pro
   ];
+  
 }

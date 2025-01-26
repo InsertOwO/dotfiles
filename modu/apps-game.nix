@@ -9,5 +9,7 @@
     prismlauncher
     pcsx2
     gzdoom
+    # If im gaming, I'm most likely also using this.
+    vesktop
   ];
 }
