@@ -8,6 +8,9 @@
       userEmail = "insertowo@noreply.codeberg.org";
       extraConfig = {
         init.defaultBranch = "main";
+        includeIf."hasconfig:remote.*.url:https://github.com/**/**" = {
+          userEmail = "182780075+InsertOwO@users.noreply.github.com";
+        };
       };
     };
   };
