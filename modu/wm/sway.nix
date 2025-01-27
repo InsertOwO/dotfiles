@@ -58,7 +58,7 @@ in
       bindkeysToCode = true;
       keybindings = {
         # Launch and kill apps.
-        "${mod}+d" = "exec rofi -show drun";
+        "${mod}+d" = "exec ${pkgs.rofi-wayland}/bin/rofi -show-icons -show drun";
         "${mod}+Return" = "exec ${pkgs.foot}/bin/foot";
         "${mod}+b" = "exec firefox";
         "${mod}+f" = "fullscreen toggle";

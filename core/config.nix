@@ -1,6 +1,6 @@
 # Options that I want on all my used pc's are set here.
 
-{inputs, config, pkgs, ...}:
+{inputs, pkgs, ...}:
 
 {
   boot = {

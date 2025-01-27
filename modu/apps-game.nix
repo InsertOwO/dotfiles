@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{pkgs, ...}:
 
 {
   # Steam cannot be enabled for a singular user.
@@ -10,6 +10,9 @@
     pcsx2
     gzdoom
     # If im gaming, I'm most likely also using this.
-    vesktop
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+      })
   ];
 }

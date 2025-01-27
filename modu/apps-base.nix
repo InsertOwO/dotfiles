@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{pkgs, ...}:
 
 {
   services = {
@@ -21,7 +21,6 @@
     sway = {
       enable = true;
       extraPackages = with pkgs; [
-        rofi-wayland
         swaybg
         swayidle
         swaylock
@@ -55,5 +54,4 @@
     font-awesome
     nerd-fonts.sauce-code-pro
   ];
-  
 }
