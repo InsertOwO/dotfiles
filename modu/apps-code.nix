@@ -9,6 +9,7 @@
       extraConfig = {
         init.defaultBranch = "main";
         includeIf."hasconfig:remote.*.url:https://github.com/**/**" = {
+          userName = "InsertOwO";
           userEmail = "182780075+InsertOwO@users.noreply.github.com";
         };
       };
