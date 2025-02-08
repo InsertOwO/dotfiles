@@ -3,7 +3,7 @@
 {
   # Enable networking.
   networking = {
-    hostName = "nixos";
+    hostName = "luna";
     networkmanager.enable = true;
   };
 
@@ -13,14 +13,21 @@
     packages = with pkgs; [libreoffice];
   };
 
+  # Activate bluetooth.
+  services.blueman.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   # Activate home-manager for school user.
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     users = {
-      school = import ../home/school.nix;
+      school = import ../../home/school.nix;
     };
   };
 
   # Import stuff.
-  imports = [./hw/hw-laptop.nix ./config.nix];
+  imports = [./hw-luna.nix ../config.nix];
 }

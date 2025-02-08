@@ -8,6 +8,7 @@
   users.users.insert.packages = with pkgs; [
     prismlauncher
     pcsx2
+    dsda-doom
     gzdoom
     # If im gaming, I'm most likely also using this.
     (discord.override {

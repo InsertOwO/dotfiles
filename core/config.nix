@@ -23,8 +23,11 @@
   # Define main user account.
   users.users.insert = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
   };
+
+  # Extra man pages.
+  documentation.dev.enable = true;
 
   # Set homemanager for main user.
   home-manager = {

@@ -21,15 +21,23 @@
     # System configurations.
     nixosConfigurations = {
       # Laptop.
-      nixos = nixpkgs.lib.nixosSystem {
+      luna = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-          ./core/laptop.nix
-	        ./modu/apps-game.nix
-	        inputs.home-manager.nixosModules.home-manager
+          ./core/luna/luna.nix
+          ./modu/apps-game.nix
+          inputs.home-manager.nixosModules.home-manager
         ];
       };
-      # TO DO: put my desktop in this config.
+      
+      # Fujitsu pc.
+      fujin = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          .core/fujin/fujin.nix
+          inputs.home-manager.nixosModules.home-manager
+        ];
+      };
     };
   };
 }

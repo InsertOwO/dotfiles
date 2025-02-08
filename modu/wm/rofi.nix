@@ -10,7 +10,7 @@ in {
     theme = {
       "*" = {
         background-color = mkLiteral "#${config.color.bgCol}";
-        foreground-color = mkLiteral "${config.color.txtCol}";
+        foreground-color = mkLiteral "#${config.color.txtCol}";
         border-color = mkLiteral "#${config.color.priCol}";
         width = 512;
       };

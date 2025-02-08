@@ -1,4 +1,4 @@
-{config, ...}:
+{ config, ...}:
 
 {
   # My name.
@@ -11,7 +11,7 @@
     stateVersion = "24.11";
   };
 
-  # Set colors my wm.
+  # Set colors for my wm.
   color = {
     priCol = "f4b8e4";
     secCol = "babbf1";
@@ -19,9 +19,22 @@
     txtCol = "c6d0f5";
   };
 
-  # Let home-manager manager itself.
   programs = {
+    # Let home-manager manager itself.
     home-manager.enable = true;
+
+    # Shell Aliases.
+    bash = {
+#      enable = true;
+      shellAliases = {
+        rebuild = "sudo nixos-rebuild switch --flake ~/system";
+        s = "cd ~/system && git add *";
+        luna = "s && rebuild#luna";
+        fujin = "rebuild#fujin";
+        fetch = "fastfetch";
+        queer = "hyfetch";
+      };
+    };
   };
 
   # Import needed settings and modules.

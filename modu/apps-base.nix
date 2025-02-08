@@ -12,7 +12,6 @@
       mountOnMedia = true;
     };
 
-    blueman.enable = true;
     gvfs.enable = true;
     printing.enable = true;
   };
