@@ -4,24 +4,26 @@
   programs.waybar = {
     enable = true;
     settings.mainBar = {
-      spacing = 5;
+      spacing = 4;
+      bar_id = "bar-0";
+      ipc = true;
 
-      modules-left = ["image" "sway/window" "privacy" "sway/mode"];
-      modules-center = ["sway/workspaces"];
+      modules-left = ["image" "sway/window" "hyprland/window" "privacy" "sway/mode"];
+      modules-center = ["sway/workspaces" "hyprland/workspaces"];
       modules-right = ["memory" "cpu" "network" "battery" "wireplumber" "clock"]; 
 
       image = {
         on-click = "exec wlogout";
         path = "/home/${config.name}/.local/icon.png";
-        size = 21;
+        size = 20;
       };
       "sway/window" = {
         format = " {title}";
-        max-length = 50;
+        max-length = 30;
       };
       privacy = {
         icon-spacing = 4;
-        icon-size = 18;
+        icon-size = 16;
         transition-duration = 250;
         modules = [
           {
@@ -50,8 +52,10 @@
       };
       network = {
         format-wifi = "{signalStrength}  ";
+        tooltip-format-wifi = "{essid} ({signalStrength}%)";
         format-ethernet = " ";
-        format-disconnected = " "; 
+        tooltip-format-ethernet = "{ifname}";
+        format-disconnected = " "; 
         on-click = "foot -e 'nmtui'";
       };
       battery = {
@@ -60,13 +64,16 @@
         format-icons = [" " " " " " " " " "];
         states = {
           "warning" = 30;
-          "critical" = 15; 
+          "critical" = 15;
+        on-click-right = "hyprsunset -t 3500";
         };
       };
       wireplumber = {
         format = "{volume} {icon}";
-        format-muted = "";
+        format-muted = "";
         format-icons = ["" " " " "];
+        on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
+        on-click-right = "pwvucontrol";
       };
       clock = {
         format = "{:%H:%M}";
@@ -77,7 +84,7 @@
     style = ''
       * {
         font-family: Font Awesome;
-        font-size: 13px;
+        font-size: 15px;
         font-weight: bold;
         border-radius: 25px;
         color:  #${config.color.txtCol};
@@ -105,8 +112,16 @@
         box-shadow: 0px 0px 0px 3px #${config.color.priCol} inset;
       }
 
-      #workspaces button.focused {
+     #workspaces button.active {
         box-shadow: 0px 0px 0px 3px #${config.color.priCol} inset;
+      }
+
+     #workspaces button.focused {
+        box-shadow: 0px 0px 0px 3px #${config.color.priCol} inset;
+      }
+
+      #network.disconnected {
+        color: #${config.color.warnCol};
       }
 
       #battery.charging {
@@ -114,7 +129,7 @@
       }
 
       #battery.critical:not(.charging) {
-  	color: #cc3436;
+      	color: #${config.color.warnCol};
       }
     '';
   };

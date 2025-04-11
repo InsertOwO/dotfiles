@@ -6,14 +6,12 @@
 
   # Other games.
   users.users.insert.packages = with pkgs; [
+    steamcontroller
     prismlauncher
     pcsx2
     dsda-doom
     gzdoom
     # If im gaming, I'm most likely also using this.
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-      })
+    discord
   ];
 }

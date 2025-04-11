@@ -10,7 +10,7 @@
   # Activate school user.
   users.users.school = {
     isNormalUser = true;
-    packages = with pkgs; [libreoffice];
+    packages = with pkgs; [libreoffice geogebra6];
   };
 
   # Activate bluetooth.

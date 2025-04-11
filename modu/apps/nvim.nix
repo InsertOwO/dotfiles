@@ -1,4 +1,4 @@
-{config, pkgs, ...}:
+{pkgs, ...}:
 
 {
   programs.neovim = {
@@ -13,8 +13,10 @@
       set expandtab
       set tabstop=2
       set shiftwidth=2
-      nmap <C-a> :Oil <cr>
-      nmap <C-x> :Floaterminal <cr>
+      let mapleader = "\<Space>"
+      nmap <leader>c = :wqall <cr>
+      nmap <leader>w :Oil <cr>
+      nmap <leader>a :Floaterminal <cr>
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -25,7 +27,6 @@
       mini-icons
 
       # QOL
-      autoclose-nvim
       nvim-treesitter.withAllGrammars
 
       # Making stuff pretty.
@@ -44,7 +45,6 @@
     extraLuaConfig = ''
       require("oil").setup()
       require("mini.icons").setup()
-      require("autoclose").setup()
       ${builtins.readFile ./nvim/cmp.lua}
       ${builtins.readFile ./nvim/line.lua}
       ${builtins.readFile ./nvim/floaTerm.lua}

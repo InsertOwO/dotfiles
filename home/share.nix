@@ -2,7 +2,12 @@
 
 {
   # Import my wm so it's applied to both users
-  imports = [../modu/wm/sway.nix];
+  imports = [../modu/wm/hypr.nix ../modu/wm/sway.nix];
+
+  config.xdg.portal = {
+    enable = true;
+    config.common.default = "*";
+  };
 
   # Set some options.
   options = {
@@ -11,10 +16,11 @@
 
     # Colors that the wm will be themed with.
     color = {
-      priCol = lib.mkOption {default = "b7000c";};
-      secCol = lib.mkOption {default = "ff0206";};
-      bgCol = lib.mkOption {default = "150526";};
-      txtCol = lib.mkOption {default = "ffffff";};
+      priCol = lib.mkOption {default = "f4b8e4";};
+      secCol = lib.mkOption {default = "ca9ee6";};
+      warnCol = lib.mkOption {default = "e78284";};
+      bgCol = lib.mkOption {default = "303446";};
+      txtCol = lib.mkOption {default = "c6d0f5";};
     };
   };
 }

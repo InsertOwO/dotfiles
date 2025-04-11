@@ -14,8 +14,9 @@ in
 
       # Set the gaps.
       gaps = {
-        inner = 7;
-        smartBorders = "no_gaps";
+        inner = 5;
+        smartBorders = "on";
+        smartGaps = true;
       };
 
       # Disable window titlebars and set the border.
@@ -42,6 +43,7 @@ in
         {
           command = "${pkgs.waybar}/bin/waybar";
           position = "top";
+          mode = "hide";
         }
       ];
 
@@ -54,6 +56,11 @@ in
         xkb_options = "caps:escape";
       };
 
+      # Set screen to go idle after a certain time.
+      startup = [
+        {command = "swayidle -w timeout 300 'swaylock -f' timeout 600 'swaymsg 'output * power off'' resume 'swaymsg 'output * power on'' before-sleep 'swaylock -f'";}
+      ];
+
       # Set keybindings to follow QWERTY.
       bindkeysToCode = true;
       keybindings = {
@@ -65,6 +72,8 @@ in
         "${mod}+r" = "mode resize";
         "${mod}+Shift+q" = "kill";
 
+        "${mod}+p" = "gaps inner all plus 5px";
+        "${mod}+o" = "gaps inner all minus 5px";
         "${mod}+Escape" = "exec wlogout";
 	      "${mod}+Shift+r" = "reload";
         "${mod}+BackSpace" = "input * xkb_switch_layout next";
@@ -76,13 +85,15 @@ in
         "Print+space" = "exec screenshot all";
 
         # Controll system.
-        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%+";
-        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%-";
-        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK";
+        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK";
+        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $WOBSOCK) || wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK
+
+";
         "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_SOURCE@ toggle";
 
-        "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
-        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+        "XF86MonBrightnessUp" = "exec brightnessctl set 5%+ | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
 
         # Layout.
         "${mod}+Shift+space" = "floating toggle";
@@ -129,9 +140,11 @@ in
     };
   };
   imports = [
+    ./rofi.nix
     ./wlogout.nix
     ./waybar.nix
     ./mako.nix
+    ./wob.nix
     ../apps/foot.nix
   ];
 }

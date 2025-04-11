@@ -1,4 +1,4 @@
-{ config, ...}:
+{config, pkgs, ...}:
 
 {
   # My name.
@@ -11,12 +11,23 @@
     stateVersion = "24.11";
   };
 
-  # Set colors for my wm.
-  color = {
-    priCol = "f4b8e4";
-    secCol = "babbf1";
-    bgCol = "292c3c";
-    txtCol = "c6d0f5";
+  gtk = {
+    enable = true;
+    theme = {
+      name = "catppuccin-frappe-pink-standard";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["pink"];
+        size = "standard";
+        variant = "frappe";
+      };
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "frappe";
+        accent = "pink";
+      };
+    };
   };
 
   programs = {
@@ -26,6 +37,7 @@
     # Shell Aliases.
     bash = {
 #      enable = true;
+      package = null;
       shellAliases = {
         rebuild = "sudo nixos-rebuild switch --flake ~/system";
         s = "cd ~/system && git add *";

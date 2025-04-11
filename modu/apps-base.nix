@@ -12,6 +12,8 @@
       mountOnMedia = true;
     };
 
+    displayManager.ly.enable = true;
+
     gvfs.enable = true;
     printing.enable = true;
   };
@@ -20,6 +22,7 @@
     sway = {
       enable = true;
       extraPackages = with pkgs; [
+        nautilus
         swaybg
         swayidle
         swaylock
@@ -31,22 +34,19 @@
       ];
     };
 
+    hyprland.enable = true;
+
     firefox.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     (import ./wm/screenshot.nix {inherit pkgs;})
-    kdePackages.dolphin
-    kdePackages.qtwayland
-    kdePackages.qtsvg
-    kdePackages.kio
-    kdePackages.kio-extras
-    libsForQt5.kservice
     pwvucontrol
     mpv
     swayimg
     unrar
     unzip
+    nnn
   ];
 
   fonts.packages = with pkgs; [

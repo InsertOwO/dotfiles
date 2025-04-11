@@ -4,14 +4,47 @@
 
 {
   boot = {
-    # Configure the bootloader.
+    # Configure the bootloader.config
     loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+        useOSProber = true;
+        splashImage = ../assets/grub.png;
+        font = ../assets/SourceCodePro.ttf;
+        fontSize = 25;
+      };
     };
+
+    # Make booting up more smooth.
+    plymouth.enable = true;
+    consoleLogLevel = 0;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+    ];
 
     # Because NixOS doesn't ship with the lastest lts?
     kernelPackages = pkgs.linuxKernel.packages.linux_6_12;
+  };
+
+  # Set Some variables.
+  environment.variables = {
+    TERMINAL = "foot";
+    TERM = "foot";
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    PAGER = "nvim";
+    FILE = "nnn";
+    NIXOS_OZONE_WL=1;
   };
 
   # Set your time zone.
@@ -43,7 +76,7 @@
     settings.experimental-features = [
       "nix-command"
       "flakes"
-	];
+	  ];
 
     # Optimise the Nix store.
     optimise.automatic = true;
@@ -57,7 +90,10 @@
   };
 
   # Import home-manager and the basic needed desktop apps.
-  imports = [inputs.home-manager.nixosModules.home-manager ../modu/apps-base.nix];
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    ../modu/apps-base.nix
+  ];
 
   # You are too stupid to know what this number means so just dont change it. Okay?
   system.stateVersion = "24.11";
