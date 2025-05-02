@@ -20,7 +20,7 @@ case $@ in
     fi
     ;;
 esac
-if [ $(notify-send --action 'default=default' "Edit or save screenshot?) == default ]; then
+if [ $(notify-send --action 'default=default' "Edit or save screenshot?") == default ]; then
   wl-paste | swappy -f -
 fi
 ''

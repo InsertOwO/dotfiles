@@ -25,6 +25,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./core/luna/luna.nix
+          ./modu/apps.nix
           ./modu/game.nix
           inputs.home-manager.nixosModules.home-manager
         ];

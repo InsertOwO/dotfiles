@@ -38,6 +38,6 @@
   # Import needed settings and modules.
   imports = [
     ./share.nix
-    ../modu/apps-code.nix
+    ../modu/code.nix
   ];
 }

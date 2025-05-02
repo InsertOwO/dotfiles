@@ -28,7 +28,7 @@
 
       input = {
         kb_layout = "us,be";
-        kb_option = "swapescape,";
+        kb_options = "swapescape,";
       };
 
       bindm = [
@@ -58,9 +58,9 @@
         "$mod, j, movefocus, d"
         "$mod, f, fullscreen"
 
-        ", print, screenshot region"
-        "shift, print, screenshhot window"
-        "$mod, print, screenshot screen"
+        ", print, exec, screenshot region"
+        "shift, print, exec, screenshhot window"
+        "$mod, print, exec, screenshot screen"
 
         "$mod shift, h, movewindow, l"
         "$mod shift, l, movewindow, r"

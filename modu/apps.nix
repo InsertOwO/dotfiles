@@ -35,6 +35,7 @@
     libnotify
     wl-clipboard
     slurp
+    swappy
     jq
 
     pwvucontrol
