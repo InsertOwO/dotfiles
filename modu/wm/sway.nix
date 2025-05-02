@@ -85,15 +85,13 @@ in
         "Print+space" = "exec screenshot all";
 
         # Controll system.
-        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK";
-        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK";
-        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $WOBSOCK) || wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $WOBSOCK
-
-";
+        "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%+";
+        "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%-";
+        "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_SINK@ toggle";
         "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_SOURCE@ toggle";
 
-        "XF86MonBrightnessUp" = "exec brightnessctl set 5%+ | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
-        "XF86MonBrightnessDown" = "exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
+        "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
+        "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
 
         # Layout.
         "${mod}+Shift+space" = "floating toggle";

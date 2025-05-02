@@ -2,7 +2,7 @@
 
 {
   # Import my wm so it's applied to both users
-  imports = [../modu/wm/hypr.nix ../modu/wm/sway.nix];
+  imports = [../modu/wm/wm.nix];
 
   config.xdg.portal = {
     enable = true;

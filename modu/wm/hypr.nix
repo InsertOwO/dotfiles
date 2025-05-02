@@ -25,8 +25,15 @@
       exec-once = [
         "waybar"
       ];
+
+      input = {
+        kb_layout = "us,be";
+        kb_option = "swapescape,";
+      };
+
       bindm = [
         "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
       ];
       binde = [
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_SINK@ 5%+"
@@ -50,6 +57,10 @@
         "$mod, k, movefocus, u"
         "$mod, j, movefocus, d"
         "$mod, f, fullscreen"
+
+        ", print, screenshot region"
+        "shift, print, screenshhot window"
+        "$mod, print, screenshot screen"
 
         "$mod shift, h, movewindow, l"
         "$mod shift, l, movewindow, r"

@@ -1,5 +1,4 @@
-# Options that I want on all my used pc's are set here.
-
+# Options that I want on all my used machines are set here.
 {inputs, pkgs, ...}:
 
 {
@@ -41,9 +40,6 @@
     TERMINAL = "foot";
     TERM = "foot";
     EDITOR = "nvim";
-    VISUAL = "nvim";
-    PAGER = "nvim";
-    FILE = "nnn";
     NIXOS_OZONE_WL=1;
   };
 
@@ -89,11 +85,8 @@
     };
   };
 
-  # Import home-manager and the basic needed desktop apps.
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-    ../modu/apps-base.nix
-  ];
+  # Import home-manager.
+  imports = [inputs.home-manager.nixosModules.home-manager];
 
   # You are too stupid to know what this number means so just dont change it. Okay?
   system.stateVersion = "24.11";

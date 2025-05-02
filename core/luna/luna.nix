@@ -7,20 +7,20 @@
     networkmanager.enable = true;
   };
 
-  # Activate school user.
+  # Enable school user.
   users.users.school = {
     isNormalUser = true;
     packages = with pkgs; [libreoffice geogebra6];
   };
 
-  # Activate bluetooth.
+  # Enable bluetooth.
   services.blueman.enable = true;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
 
-  # Activate home-manager for school user.
+  # Enable home-manager for school user.
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
     users = {
@@ -29,5 +29,11 @@
   };
 
   # Import stuff.
-  imports = [./hw-luna.nix ../config.nix];
+  imports = [
+    ../config.nix
+    ./hw-luna.nix
+
+    # Change to sway.nix for sway.
+    ../../modu/hypr.nix
+  ];
 }

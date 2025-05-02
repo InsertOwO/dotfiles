@@ -1,52 +1,47 @@
 {pkgs, ...}:
 
 {
+  # Enable needed services.
   services = {
+    # Audio.
     pipewire = {
       enable = true;
       pulse.enable = true;
     };
 
+    # Automount new storage devices.
     udisks2 = {
       enable = true;
       mountOnMedia = true;
     };
 
+    # Display manager.
     displayManager.ly.enable = true;
 
+    # Transfer files from phone and printing.
     gvfs.enable = true;
     printing.enable = true;
   };
 
   programs = {  
-    sway = {
-      enable = true;
-      extraPackages = with pkgs; [
-        nautilus
-        swaybg
-        swayidle
-        swaylock
-        brightnessctl
-        jq
-        grim
-        slurp
-        swappy
-      ];
-    };
-
-    hyprland.enable = true;
-
     firefox.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
-    (import ./wm/screenshot.nix {inherit pkgs;})
+    brightnessctl
+
+    # Screenshot stuff.
+    grim
+    libnotify
+    wl-clipboard
+    slurp
+    jq
+
     pwvucontrol
+    nautilus
     mpv
-    swayimg
     unrar
     unzip
-    nnn
   ];
 
   fonts.packages = with pkgs; [

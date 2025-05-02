@@ -33,20 +33,6 @@
   programs = {
     # Let home-manager manager itself.
     home-manager.enable = true;
-
-    # Shell Aliases.
-    bash = {
-#      enable = true;
-      package = null;
-      shellAliases = {
-        rebuild = "sudo nixos-rebuild switch --flake ~/system";
-        s = "cd ~/system && git add *";
-        luna = "s && rebuild#luna";
-        fujin = "rebuild#fujin";
-        fetch = "fastfetch";
-        queer = "hyfetch";
-      };
-    };
   };
 
   # Import needed settings and modules.

@@ -1,26 +1,26 @@
 {pkgs}:
 
 pkgs.writeShellScriptBin "screenshot" ''
-  # region|window|output|all
-  mode="$1"
-
-  case $mode in
-      "region")
-          grim -g "$(slurp)" - | swappy -f -
-          ;;
-      "window")
-          grim -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" - | swappy -f -
-          ;;
-      "output")
-          grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | swappy -f -
-          ;;
-      "all")
-          grim - | swappy -f -
-          ;;
-      *)
-          echo >&2 "unsupported command \"$mode\""
-          echo >&2 "Usage:"
-          echo >&2 "screenshot.sh <region|window|output|all>"
-          exit 1
-  esac
+case $@ in
+  screen)
+    grim - | wl-copy
+    ;;
+  region)
+    slurp | grim -g - - | wl-copy
+    ;;
+  window)
+    if  [ $XDG_CURRENT_DESKTOP == sway ]; then
+      swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"' | grim -g - - | wl-copy
+    else
+      if [ $XDG_CURRENT_DESKTOP == Hyprland ]; then
+        hyprctl -j activewindow | jq -r '"\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"' | grim -g - - | wl-copy
+      else
+        echo "This WM is not supported."
+      fi
+    fi
+    ;;
+esac
+if [ $(notify-send --action 'default=default' "Edit or save screenshot?) == default ]; then
+  wl-paste | swappy -f -
+fi
 ''
