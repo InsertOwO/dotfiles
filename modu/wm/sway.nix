@@ -95,8 +95,8 @@ in
 
         # Layout.
         "${mod}+Shift+space" = "floating toggle";
-        "${mod}+w" = "layout toggle tabbed";
-        "${mod}+c" = "splith";
+        "${mod}+z" = "layout toggle tabbed";
+        "${mod}+g" = "splith";
         "${mod}+v" = "splitv";
 
         # Focus on windows.
