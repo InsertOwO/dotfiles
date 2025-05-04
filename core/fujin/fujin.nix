@@ -5,5 +5,9 @@
   networking.hostName = "fujin";
 
   # Import stuff.
-  imports = [./hw-fujin. ../config.nix];
+  imports = [
+    ./hw-fujin.nix 
+    ../config.nix
+    ../../modu/sway.nix
+  ];
 }

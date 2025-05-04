@@ -10,7 +10,7 @@
       "$menu" = "${pkgs.rofi-wayland}/bin/rofi -show drun";
       "$term" = "foot";
       "$browse" = "firefox";
-      "$file" = "foot -e nnn";
+      "$file" = "rofi -show filebrowser";
 
       general = {
         gaps_out = 10;
@@ -28,7 +28,7 @@
 
       input = {
         kb_layout = "us,be";
-        kb_options = "swapescape,";
+        kb_options = "caps:swapescape,grp:win_space_toggle";
       };
 
       bindm = [

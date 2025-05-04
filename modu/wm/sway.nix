@@ -53,7 +53,7 @@ in
       # Set the keyboard layout and set caps to escape.
       input."*" = {
         xkb_layout = "us,be";
-        xkb_options = "caps:escape";
+        xkb_options = "swapescape";
       };
 
       # Set screen to go idle after a certain time.
@@ -66,12 +66,13 @@ in
       keybindings = {
         # Launch and kill apps.
         "${mod}+d" = "exec ${pkgs.rofi-wayland}/bin/rofi -show-icons -show drun";
-        "${mod}+Return" = "exec ${pkgs.foot}/bin/foot";
-        "${mod}+b" = "exec firefox";
+        "${mod}+q" = "exec ${pkgs.foot}/bin/foot";
+        "${mod}+w" = "exec nautilus";
+        "${mod}+e" = "exec firefox";
         "${mod}+f" = "fullscreen toggle";
         "${mod}+r" = "mode resize";
-        "${mod}+Shift+q" = "kill";
-
+        "${mod}+c" = "kill";
+      
         "${mod}+p" = "gaps inner all plus 5px";
         "${mod}+o" = "gaps inner all minus 5px";
         "${mod}+Escape" = "exec wlogout";
@@ -81,8 +82,7 @@ in
         # Take screenshots.
         "Print" = "exec screenshot region";
         "Print+Shift" = "exec screenshot window";
-        "Print+Ctrl" = "exec screenshot output";
-        "Print+space" = "exec screenshot all";
+        "Print+${mod}" = "exec screenshot output";
 
         # Controll system.
         "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 5%+";

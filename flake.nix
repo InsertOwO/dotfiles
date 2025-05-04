@@ -35,7 +35,8 @@
       fujin = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-          .core/fujin/fujin.nix
+          ./core/fujin/fujin.nix
+          ./modu/apps.nix
           inputs.home-manager.nixosModules.home-manager
         ];
       };

@@ -16,7 +16,6 @@
     nil
     man-pages
     man-pages-posix
-    godot_4
     cmake
     gnumake
     gcc

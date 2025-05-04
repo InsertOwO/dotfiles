@@ -10,7 +10,7 @@
     theme = builtins.toFile "rofi-theme.rasi" ''
      /*****----- Configuration -----*****/
      configuration {
-       modi:                         "drun,filebrowser";
+       modi:                         "drun";
          show-icons:                 true;
          display-drun:               " ";
          display-run:                " ";
